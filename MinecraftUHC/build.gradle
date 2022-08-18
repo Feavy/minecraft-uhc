@@ -1,0 +1,28 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+    id 'java'
+}
+
+group 'fr.feavy'
+version '1.0'
+
+repositories {
+    mavenCentral()
+    maven { url = uri("https://repo.papermc.io/repository/maven-public/") }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    compileOnly("org.github.paperspigot:paperspigot-api:1.8.8-R0.1-SNAPSHOT")
+    implementation 'org.javacord:javacord:3.5.0'
+
+}
+
+tasks.withType(Jar) {
+    destinationDirectory = file("$rootDir/../template/plugins")
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mc-uhc-config
+  namespace: feavy
+data:
+  MINECRAFT_CHANNEL: "${MINECRAFT_CHANNEL}"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mc-uhc-secret
+  namespace: feavy
+type: Opaque
+stringData:
+  MINECRAFT_TOKEN: "${MINECRAFT_TOKEN}"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mc-uhc
+  namespace: feavy
+  labels:
+    k8s-app: mc-uhc
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mc-uhc
+  template:
+    metadata:
+      labels:
+        k8s-app: mc-uhc
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: 'oracle-paris'
+      hostNetwork: true # Ou possible avec hostPort
+      containers:
+        - name: mc-uhc
+          image: ${DOCKER_IMAGE}
+          envFrom:
+            - configMapRef:
+                name: mc-uhc-config
+            - secretRef:
+                name: mc-uhc-secret
+          volumeMounts:
+            - mountPath: /etc/minecraft
+              name: minecraft-data
+          imagePullPolicy: Always
+      volumes:
+        - name: minecraft-data
+          hostPath:
+            path: /mnt/uhc1
+      imagePullSecrets:
+        - name: regcred
