@@ -55,24 +55,24 @@ public class PlayerListener implements Listener {
         );
     }
 
-    @EventHandler
-    public void onPlayerBreakBlock(BlockBreakEvent e) {
-        discord().sendEmbed(new EmbedBuilder()
-                .setColor(Color.LIGHT_GRAY)
-                .setDescription(e.getPlayer().getDisplayName()+" a cassé un block de "+e.getBlock().getType().toString()+" !")
-        );
-    }
-
-    @EventHandler
-    public void onPlayerKillEntity(EntityDeathEvent e) {
-        Player killer = e.getEntity().getKiller();
-        if(killer == null) {
-            return;
-        }
-        discord().sendEmbed(new EmbedBuilder()
-                .setColor(Color.LIGHT_GRAY)
-                .setDescription(killer.getDisplayName()+" a tué un "+e.getEntity().getName()+" !")
-        );
-    }
+//    @EventHandler
+//    public void onPlayerBreakBlock(BlockBreakEvent e) {
+//        discord().sendEmbed(new EmbedBuilder()
+//                .setColor(Color.LIGHT_GRAY)
+//                .setDescription(e.getPlayer().getDisplayName()+" a cassé un block de "+e.getBlock().getType().toString()+" !")
+//        );
+//    }
+//
+//    @EventHandler
+//    public void onPlayerKillEntity(EntityDeathEvent e) {
+//        Player killer = e.getEntity().getKiller();
+//        if(killer == null) {
+//            return;
+//        }
+//        discord().sendEmbed(new EmbedBuilder()
+//                .setColor(Color.LIGHT_GRAY)
+//                .setDescription(killer.getDisplayName()+" a tué un "+e.getEntity().getName()+" !")
+//        );
+//    }
 }
 
