@@ -2,3 +2,7 @@ name: MinecraftUHC
 main: fr.feavy.mc.Main
 author: Feavy
 version: 1.0
+commands:
+  reset:
+    description: Réinitialise le serveur
+    usage: /reset

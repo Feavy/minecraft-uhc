@@ -17,8 +17,7 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     compileOnly("org.github.paperspigot:paperspigot-api:1.8.8-R0.1-SNAPSHOT")
     implementation 'org.javacord:javacord:3.5.0'
-    compileOnly 'org.spongepowered:spongeapi:4.2.0-SNAPSHOT'
-
+    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
 }
 
 tasks.withType(Jar) {
