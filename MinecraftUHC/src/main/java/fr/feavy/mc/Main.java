@@ -11,7 +11,7 @@ public class Main extends JavaPlugin {
         Discord.discord().sendEmbed(
                 new EmbedBuilder()
                         .setTitle("Le serveur est ON")
-                        .setFooter("uhc.feavy.fr")
+                        .setFooter("uhc.feavy.fr — 1.8.9")
                         .setColor(Color.GREEN)
         );
     }
@@ -21,7 +21,7 @@ public class Main extends JavaPlugin {
         Discord.discord().sendEmbed(
                 new EmbedBuilder()
                         .setTitle("Le serveur est OFF")
-                        .setFooter("uhc.feavy.fr")
+                        .setFooter("uhc.feavy.fr — 1.8.9")
                         .setColor(Color.RED)
         );
     }
