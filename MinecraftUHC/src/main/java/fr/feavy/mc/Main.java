@@ -6,7 +6,6 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import org.bukkit.WorldCreator;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,6 +16,7 @@ import static fr.feavy.mc.Discord.discord;
 public class Main extends JavaPlugin {
     public void onEnable() {
         super.onEnable();
+        Config.create(this);
         this.getServer().getPluginManager().registerEvents(new PlayerListener(), this);
 
         for (World world : Bukkit.getServer().getWorlds()) {
@@ -51,6 +51,7 @@ public class Main extends JavaPlugin {
             Bukkit.getServer().setWhitelist(true);
             Bukkit.getServer().getOnlinePlayers().forEach(p -> p.kickPlayer(""));
             Bukkit.getScheduler().scheduleSyncDelayedTask(this, () -> {
+                Config.get().delete();
                 for (World world : Bukkit.getWorlds()) {
                     boolean b = Bukkit.unloadWorld(world, false);
                     System.out.println("Unload " + world.getName() + " : " + b);

@@ -4,4 +4,6 @@ cp -R /etc/template/* /etc/minecraft
 
 cd /etc/minecraft
 
-java -jar paper.jar
+while true; do
+  java -jar paper.jar
+done
