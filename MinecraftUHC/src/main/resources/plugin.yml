@@ -1,5 +1,5 @@
 name: MinecraftUHC
-main: fr.feavy.mc.Main
+main: fr.feavy.mc.UHCPlugin
 author: Feavy
 version: 1.0
 commands:

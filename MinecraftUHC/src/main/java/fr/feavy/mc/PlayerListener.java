@@ -70,14 +70,19 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onPlayerEnterPortal(PlayerPortalEvent e) {
-        if(e.getTo().getWorld().getEnvironment() == World.Environment.NETHER && !Config.get().getNether(e.getPlayer())) {
+        World world = e.getTo().getWorld();
+
+        if(world.getEnvironment() == World.Environment.THE_END) {
+            generateEndSpawnPlatform(world);
+        }
+        if(world.getEnvironment() == World.Environment.NETHER && !Config.get().getNether(e.getPlayer())) {
             Config.get().setNether(e.getPlayer());
             discord().sendTimedEmbed(new EmbedBuilder()
                     .setColor(Color.RED)
                     .setDescription(e.getPlayer().getDisplayName()+" est entré dans le Nether !"),
                     e.getPlayer()
             );
-        } else if(e.getTo().getWorld().getEnvironment() == World.Environment.THE_END && !Config.get().getEnd(e.getPlayer())) {
+        } else if(world.getEnvironment() == World.Environment.THE_END && !Config.get().getEnd(e.getPlayer())) {
             Config.get().setEnd(e.getPlayer());
             discord().sendTimedEmbed(new EmbedBuilder()
                     .setColor(new Color(0x0D0518))
@@ -99,6 +104,24 @@ public class PlayerListener implements Listener {
                 .setDescription(player.getDisplayName() + " a vaincu l'Ender Dragon ! :dragon_face:"),
                 player
         );
+    }
+
+    private void generateEndSpawnPlatform(World world) {
+        // fill from 98 48 2 to 102 48 -2 with obsidian
+        for (int x = 98; x <= 102; x++) {
+            for (int z = -2; z <= 2; z++) {
+                world.getBlockAt(x, 48, z).setType(org.bukkit.Material.OBSIDIAN);
+            }
+        }
+
+        // fill from 102 49 -2 to 98 51 2 with air
+        for (int x = 98; x <= 102; x++) {
+            for (int y = 49; y <= 51; y++) {
+                for (int z = -2; z <= 2; z++) {
+                    world.getBlockAt(x, y, z).setType(org.bukkit.Material.AIR);
+                }
+            }
+        }
     }
 
 //    @EventHandler

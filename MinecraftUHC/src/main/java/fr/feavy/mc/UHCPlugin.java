@@ -13,7 +13,7 @@ import org.javacord.api.entity.message.embed.EmbedBuilder;
 
 import static fr.feavy.mc.Discord.discord;
 
-public class Main extends JavaPlugin {
+public class UHCPlugin extends JavaPlugin {
     public void onEnable() {
         super.onEnable();
         Config.create(this);
