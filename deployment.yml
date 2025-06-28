@@ -32,7 +32,7 @@ spec:
         k8s-app: mc-uhc
     spec:
       nodeSelector:
-        kubernetes.io/hostname: 'oracle-paris'
+        kubernetes.io/hostname: 'marseille-large-2'
       hostNetwork: true # Ou possible avec hostPort
       containers:
         - name: mc-uhc
